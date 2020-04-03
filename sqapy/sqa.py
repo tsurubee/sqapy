@@ -4,20 +4,17 @@ import numpy as np
 
 class SQASampler:
 
-    def __init__(self, model, P=40, T=0.015, G0=3, Gf=1e-6, e0=1e-6, ef=4, steps=1000):
+    def __init__(self, model, P=40, T=0.015, G0=3, Gf=1e-6, steps=1000):
         self.P  = P
         self.T  = T
         self.G0 = G0
         self.Gf = Gf
-        self.e0 = e0
-        self.ef = ef
         self.steps = steps
         self.model = model
         self.PT    = self.P * self.T
 
         schedule_G = np.linspace(G0, Gf, steps)
-        schedule_e = np.linspace(e0, ef, steps)
-        schedule_Jp = -0.5 * self.PT * np.log(np.tanh(schedule_G / (schedule_e * self.PT)))
+        schedule_Jp = -0.5 * self.PT * np.log(np.tanh(schedule_G / (self.PT)))
         self.schedule = zip(schedule_Jp, schedule_G)
 
         self.slices = []
