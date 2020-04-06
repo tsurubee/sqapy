@@ -22,9 +22,8 @@ class SQASampler:
             self.slices[i].initialize()
 
     def sample(self, n_sample=1, reinitialize=True):
-        H = []
-        visible = []
-        hidden = []
+        energies = []
+        spins = []
         self.execution_time = []
         for i in range(n_sample):
             start = time.time()
@@ -41,13 +40,11 @@ class SQASampler:
                         self.slices[k].flip_spin(i)
             end = time.time()
             self.execution_time.append((end - start) * 10**3)
-            energies = [s.calculate_H() for s in self.slices]
-            best_index = np.argmin(energies)
-            H.append(energies[best_index])
-            self.spins = self.slices[best_index].spins.copy()
-            visible.append(self.spins[:len(self.model.b)])
-            hidden.append(self.spins[len(self.model.b):])
-        return H, visible, hidden
+            energy_list = [s.calculate_H() for s in self.slices]
+            best_index = np.argmin(energy_list)
+            energies.append(energy_list[best_index])
+            spins.append(self.slices[best_index].spins)
+        return energies, spins
 
     def calculate_dH_interslice(self, k, i, Jp):
         dH = -2 * self.slices[k].get_spin(i) * Jp
