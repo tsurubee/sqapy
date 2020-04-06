@@ -2,7 +2,7 @@
 name = "sqapy"
 version = "0.1.0"
 description = "Simulated quantum annealing implemented in Python"
-authors = ["tsurubee"]
+authors = ["Hirofumi Tsuruta"]
 license = "MIT"
 
 [tool.poetry.dependencies]
