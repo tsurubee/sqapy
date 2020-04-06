@@ -3,7 +3,7 @@ import numpy as np
 
 class BipartiteGraph:
 
-    def __init__(self, b, c, W, v_init=None):
+    def __init__(self, b, c, W, initial_state=None):
         self.b = b
         self.c = c
         self.h = np.concatenate([b, c])
@@ -13,7 +13,7 @@ class BipartiteGraph:
         else:
             self.W = W
         self.n_spins = len(self.h)
-        self.spins = v_init
+        self.spins = initial_state
 
         J1 = np.concatenate([np.zeros((self.W.shape[0], self.W.shape[0]), dtype=float), self.W.T], 0)
         J2 = np.concatenate([self.W, np.zeros((self.W.shape[1], self.W.shape[1]), dtype=float)], 0)
