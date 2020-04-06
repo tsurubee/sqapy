@@ -46,7 +46,7 @@ class BipartiteGraph:
         dH += sum((1 if self.spins[j] else -1) * self.J[i, j] for j in self.linked[i])
         if not self.spins[i]:
             dH *= -1
-        return dH
+        return 2 * dH
 
     def get_spin(self, i):
         return 1 if self.spins[i] else -1
