@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pysqa"
+name = "sqapy"
 version = "0.1.0"
 description = "Simulated quantum annealing implemented in Python"
 authors = ["tsurubee"]
