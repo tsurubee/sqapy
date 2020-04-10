@@ -6,7 +6,7 @@ authors = ["Hirofumi Tsuruta"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 numpy = "^1.18.2"
 
 [tool.poetry.dev-dependencies]
