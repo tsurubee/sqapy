@@ -28,8 +28,8 @@ class SQASampler:
         for i in range(n_sample):
             start = time.time()
             if reinitialize and i != 0:
-                for i in range(self.trotter):
-                    self.slices[i].initialize()
+                for j in range(self.trotter):
+                    self.slices[j].initialize()
             for Jp in self.schedule_Jp:
                 slices = np.random.permutation(self.trotter)
                 for k in slices:
